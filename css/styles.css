@@ -1,9 +1,10 @@
 html, body{
   height: 100%;
+  font-family: 'Source Sans Pro';
 }
 
 .navbar-static-top {
-  /*margin-bottom:20px;*/
+  margin-bottom:0;
 }
 
 i {
@@ -11,7 +12,11 @@ i {
 }
 
 #title{
+	font-size: 20px;
 	color: white;
+	left: 0;
+	right: 0;
+	margin: auto;
 }
 
 .main{
@@ -26,6 +31,7 @@ i {
 
   /*background-color:green;*/
   height: 100%;
+  overflow: auto;
 
 	  /* General Blueprint Style */
 	@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
@@ -158,6 +164,20 @@ i {
 	}
   background-color:green;
   /*height: 100%;*/
+}
+
+.subtitle{
+	font-size: 31px;
+	padding-top: 10px;
+}
+
+.dates{
+	font-size:25px;
+	margin:10px;
+}
+
+.dates > li{
+	margin-top: 10px;
 }
 
 .middle{
