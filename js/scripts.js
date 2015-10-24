@@ -92,4 +92,6 @@
             //start_timeline();
         }
         //start_timeline();
+
+        var dataRef = new Firebase('https://blinding-heat-908.firebaseio.com/');
      

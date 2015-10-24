@@ -12,9 +12,7 @@
 		<![endif]-->
         <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 		<link href="css/styles.css" rel="stylesheet">
-        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>
-
-        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
+        <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
         <script type="text/javascript" src="https://www.moxtra.com/api/js/moxtra-latest.js" id="moxtrajs" data-client-id="jVvRPHlk5nQ"/>
         <script src="js/jquery-2.1.4.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -68,12 +66,15 @@
                 <div class="col-sm-6 middle">
                     <!-- <p>middle</p> -->
                     <div class="subtitle">Tasks</div>
-                    <a id="getToken" href="javascript:start_chat();">Moxtra Chat</a>
-                    <div id="chat"></div>
+                    <div class="list">
+                        <input type="text" placeholder="Enter task">
+                    </div>
+                    <!-- <a id="getToken" href="javascript:start_chat();">Moxtra Chat</a> -->
+                    <!-- <div id="chat"></div> -->
                 </div>
 
                 <div class="col-sm-3 right">
-                    <img src = "./egg/egg-yellow3.png" style ="width: 50%, height: 50%, text-align: center">
+                    <img src="./egg/egg-yellow3.png" style ="width: 50%, height: 50%, text-align: center">
                     <p><center><font size="6">Demo Task</font></center></p>
                     <p><center><font size="4">Member List:</font></center></p>
 
