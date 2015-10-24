@@ -1,3 +1,7 @@
+html, body{
+  height: 100%;
+}
+
 .navbar-static-top {
   margin-bottom:20px;
 }
@@ -6,15 +10,25 @@ i {
   font-size:16px;
 }
 
-#left{
-  background-color:#000000;
+.main{
+  display: table;
+}
+
+.row{
+  height: 100%;
+}
+
+.left{
+  background-color:green;
+  height: 100%;
+}
+
+.middle{
+  background-color: orange; 
 
 }
 
-#middle{
-  background-color: #000000; 
-}
+.right{
+  background-color: blue;
 
-#test p{
-  color: green; 
 }
