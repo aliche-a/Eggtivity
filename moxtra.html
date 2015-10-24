@@ -63,8 +63,8 @@
                 tagid4iframe: "chat-container",
                 iframewidth: "1000px",
                 iframeheight: "750px",                
-                autostart_meet: true,
-                autostart_note: true,
+                //autostart_meet: true,
+                //autostart_note: true,
                 extension: { "show_dialogs": { "member_invite": true } },
                 start_chat: function(event) {
                     console.log("Chat started binder ID: " + event.binder_id);
@@ -88,11 +88,34 @@
             };            
             Moxtra.chat(chat_options);
         }
+
+        function start_timeline(){
+            var options = {
+                iframe: true,
+                tagid4iframe: "timeline",
+                iframewidth: "350px",
+                iframeheight: "650px",
+                start_timeline: function(event) {
+                    alert("TimelineView started session Id: " + event.session_id);
+                },
+                request_view_binder: function(event) {
+                    alert("Request to view binder Id " + event.binder_id);
+                },
+                error: function(event) {
+                    alert("TimelineView error code: " + event.error_code + " error message: " + event.error_message);
+                }
+            };
+
+            Moxtra.timelineView(options);
+            //start_timeline();
+        }
+        //start_timeline();
         </script>
             
     </head>
     <body>
-        <h3><a id="getToken" href="javascript:start_chat();">Moxtra Chat</a></h3>
+        <h3><a id="getToken" href="javascript:start_timeline();">timeline</a></h3>
+        <div id="timeline"></div>
         <div id="chat-container"></div>
     </body>
 </html>

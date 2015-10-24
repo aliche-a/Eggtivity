@@ -1,81 +1,95 @@
-
-// POST /oauth/token
-// Host: https://apisandbox.moxtra.com
-// Content-Type: application/x-www-form-urlencoded
-
-// client_id=INSERT_CLIENT_ID&
-// client_secret=INSERT_CLIENT_SECRET&
-// grant_type=http://www.moxtra.com/auth_uniqueid&
-// uniqueid=INSERT_UNIQUE_USER_IDENTIFIER&
-// timestamp=TIMESTAMP&
-// firstname=INSERT_FIRST_NAME&
-// lastname=INSERT_LAST_NAME
-
-// //function create_user(){
-	// var client_id = "jVvRPHlk5nQ";
- //    var client_secret = "h4HCfKL9mqc";
- //    var timestamp = new Date().getTime();
- //    var unique_id = "unique_user_id"; //Unique ID of how user is identified in your system
-    
- //    var hash = CryptoJS.HmacSHA256(client_id + unique_id + timestamp, client_secret);
- //    var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
- //    var signature = hashInBase64.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
-// //}
-	
-// function get_token() {
-//         var init_options = {
-//             uniqueid: unique_id,
-//             firstname: "John",
-//             lastname: "Doe",
-//             timestamp: timestamp,
-//             signature: signature,
-//             get_accesstoken: function(result) {
-//                 console.log("access_token: " + result.access_token + " expires in: " + result.expires_in);
-//                 start_meet(result.access_token);
-//             },
-//             error: function(result) {
-//                 console.log("error code: " + result.error_code + " message: " + result.error_message);
-//             }
-//         };
-//         Moxtra.setup(init_options);
-//     }
-
-// function start_meet(access_token) {
-//     var meet_options = {
-//         iframe: true, //To open the meet in the same window within an iFrame.
-//         // tab: true, //To open the meet in a new browser tab, N/A if iframe option is set to true.
-//         tagid4iframe: "meet-container",
-//         iframewidth: "1000px",
-//         iframeheight: "750px",
-//         extension: { 
-//             "show_dialogs": { "meet_invite": true } 
-//         },
-//         access_token: access_token,
-//         start_meet: function(event) {
-//             console.log("Meet Started - session_id: "+event.session_id+"session_key: "+event.session_key);
-//             //Your application server can upload files to meet using the session_id and session_key
-//         },
-//         error: function(event) {
-//             console.log("error code: " + event.error_code + " message: " + event.error_message);
-//         },
-//         end_meet: function(event) {
-//             console.log("Meet Ended");
-//         }
-//     };
-//     Moxtra.meet(meet_options);
-// }
-
-function init() {
-    var options = {
-        mode: "sandbox", //for production environment change to "production"
-        client_id: jVvRPHlk5nQ,
-        access_token: ACCESS_TOKEN, //valid access token from user authentication
-        invalid_token: function(event) {
-            alert("Access Token expired for session id: " + event.session_id);
+          function getAccessToken(unique_id) {
+                var timestamp = new Date().getTime();
+                $.ajax({
+                    type: 'POST',
+                    url: 'https://apisandbox.moxtra.com/oauth/token',
+                    data: 'client_id=jVvRPHlk5nQ&client_secret=h4HCfKL9mqc&grant_type=http://www.moxtra.com/auth_uniqueid&uniqueid='+unique_id+'&timestamp='+timestamp+'&firstname=John&lastname=Doe',
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function(data){
+                        response = JSON.stringify(data);
+                        var obj = JSON.parse(response);
+                        var access_t = (obj.access_token);
+                        console.log(access_t);
+                        // console.log(response);
+                        return access_t;
+                    }
+                });
+            }
+            
+            access_token=getAccessToken('u001');//'4zMgAAAVCaymINAACowFViYlplVE52OWZURjJlZDZick51dGYzIAAAAANUdHNDeWFmTmxuUERxOTVEZUxSV1BSQmpWdlJQSGxrNW5R';//getAccessToken("u001");
+            console.log(access_token);
+            if (access_token) {
+                // Initialize Moxtra SDK Object
+                var options = {
+                    mode: "production", 
+                    client_id: "jVvRPHlk5nQ", //
+                    access_token: access_token,
+                    invalid_token: function(event) {
+                        //Triggered when the access token is expired or invalid
+                        alert("Access Token expired for session id: " + event.session_id);
+                    }
+                };
+                Moxtra.init(options);
+            }
+            else {
+                //Authenticate and get access token for the user before proceeding further
+                console.log ("No access token found");
+            }  
+       
+        function start_chat () {            
+            var chat_options = {
+                //unique id of the users who will be part of the chat. These users should already exist in Moxtra.
+                //unique_id: "unique_user_id_2,unique_user_id_3",  
+                iframe: true,
+                //ID of the HTML tag within which the chat window will show up. Refer https://developer.grouphour.com/moxo/docs-js-sdk/#conversation
+                tagid4iframe: "chat",
+                iframewidth: "100%",
+                iframeheight: "100%",                
+                //autostart_meet: true,
+                //autostart_note: true,
+                extension: { "show_dialogs": { "member_invite": true } },
+                start_chat: function(event) {
+                    console.log("Chat started binder ID: " + event.binder_id);
+                    //Your application server can upload files to draw using the binder_id and access_token
+                },
+                start_meet: function(event) {
+                    console.log("Meet started session key: " + event.session_key + " session id: " + event.session_id);
+                },
+                end_meet: function(event) {
+                    console.log("Meet end event");
+                },
+                invite_member: function(event) {
+                    console.log("Invite member into binder Id: " + event.binder_id);
+                },
+                request_note: function(event) {
+                    console.log("Note start request");
+                },
+                error: function(event) {
+                    console.log("Chat error code: " + event.error_code + " error message: " + event.error_message);
+                }
+            };            
+            Moxtra.chat(chat_options);
         }
-    };
 
-    Moxtra.init(options);
-}
+        function start_timeline(){
+            var options = {
+                iframe: true,
+                tagid4iframe: "timeline",
+                iframewidth: "350px",
+                iframeheight: "650px",
+                start_timeline: function(event) {
+                    alert("TimelineView started session Id: " + event.session_id);
+                },
+                request_view_binder: function(event) {
+                    alert("Request to view binder Id " + event.binder_id);
+                },
+                error: function(event) {
+                    alert("TimelineView error code: " + event.error_code + " error message: " + event.error_message);
+                }
+            };
 
-init();
+            Moxtra.timelineView(options);
+            //start_timeline();
+        }
+        //start_timeline();
+     
