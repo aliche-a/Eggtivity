@@ -242,10 +242,19 @@
                 
             }
 
+            var dateIDs = ['Date1', 'Date2', 'Date3', 'Date4'];
+
             function showList(date){
                 currDate = date;
                 $('#addToList').show();
                 $('#pickDate').hide();
+                for(var i = 0; i < dateIDs.length; i++){
+                    if(dateIDs[i] == date)
+                        $('#' + date).addClass('active');
+                    else
+                        $('#' + dateIDs[i]).removeClass('active');
+                }
+                
                 console.log('showing list of ' + date);
                 document.getElementById('list').innerHTML = '';
                 var dateDB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates/' + date);
