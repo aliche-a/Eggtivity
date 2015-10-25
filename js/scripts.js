@@ -99,6 +99,14 @@
             $('#addTaskButton').click(function(){
                 var item = document.getElementById('listItem').value;
                 console.log(item);
+                var taskItem = document.createElement("input");
+                taskItem.type = "checkbox";
+                taskItem.label = item;
+                var label = document.createElement('label');
+                label.htmlFor = "id";
+                label.appendChild(document.createTextNode(item));
+                document.getElementById('list').appendChild(taskItem);
+                document.getElementById('list').appendChild(label);
             });
         }
         
