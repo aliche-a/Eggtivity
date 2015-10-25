@@ -174,7 +174,7 @@
 
                 if(obj.done == 'yes')
                     taskItem.checked = "true";
-
+            }
             function check(){
                 //console.log('check function');
                     

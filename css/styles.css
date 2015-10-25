@@ -27,6 +27,13 @@ i {
 .indivDate{
 	cursor: hand;
 	cursor: pointer;
+	/*background-color:green;*/
+	text-align:center;
+	width: 80px;
+}
+
+.indivDate:hover{
+	border-bottom: 3px solid;
 }
 
 .row{
