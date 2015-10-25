@@ -93,10 +93,11 @@
         // }
         // //start_timeline(); 
 
-        //var dataRef = new Firebase('https://blinding-heat-908.firebaseio.com/');
+        var dataRef = new Firebase('https://blinding-heat-908.firebaseio.com/');
 
         window.onload = function(){
-            $('#addTaskButton').click(function(){
+            var date = "4/10/13";
+            $('#addTaskButton').click(function(date){
                 var item = document.getElementById('listItem').value;
                 console.log(item);
                 var taskItem = document.createElement("input");
@@ -107,9 +108,20 @@
                 label.appendChild(document.createTextNode(item));
                 var br = document.createElement('br');
 
+                //adding item to front end
                 document.getElementById('list').appendChild(taskItem);
                 document.getElementById('list').appendChild(label);
                 document.getElementById('list').appendChild(br);
+
+                //adding item to firebase
+                var dateTab = dataRef.child('TName').child('Dates').child('Date1');
+                //console.log(dateTab.value('Person 1'));
+                dateTab.on('value', function(snapshot){
+                    var data = snapshot.val();
+                    console.log(data);
+                });
+
+                dateTab.push({'name': item, 'done': 'no'});
             });
         }
         
