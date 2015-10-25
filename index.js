@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     var resetButton = document.getElementById('reset');
     // onClick's logic below:
     resetButton.addEventListener('click', function() {
@@ -23,4 +23,4 @@ document.addEventListener('DOMContentLoaded', function() {
       Person4: 'simplelogin:-1',
     });
   });
-});
+});*/

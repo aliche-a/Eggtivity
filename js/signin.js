@@ -1,4 +1,4 @@
-Firebase.enableLogging(true);
+//Firebase.enableLogging(true);
 var ref = new Firebase("https://blinding-heat-908.firebaseio.com/");
 var loggedIn = false;
 function createUser(teamNameObject)
@@ -29,7 +29,7 @@ function authWithUsername(teamNameObject)
      document.getElementById("error").innerHTML = "Invalid Username.";
    } else {
     console.log("Log in successful:", authData);
-    var html = '<p> You have logged in successfully as ' + authData.password.email + '</p>';
+    //var html = '<p> You have logged in successfully as ' + authData.password.email + '</p>';
     document.getElementById("form").innerHTML= html;
    /* key = authData.uid;
     assignPlayerNumber(key);
