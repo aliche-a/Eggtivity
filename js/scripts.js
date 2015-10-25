@@ -175,9 +175,27 @@
                 if(obj.done == 'yes')
                     taskItem.checked = "true";
 
-                document.getElementById('list').appendChild(taskItem);
-                document.getElementById('list').appendChild(label);
-                document.getElementById('list').appendChild(br);
+            function check(){
+                //console.log('check function');
+                    
+                    var DB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates/' + currDate);
+                    //console.log('made database');
+                    DB.once('value', function(snapshot){
+                        snapshot.forEach(function(childSnapshot){
+                            //console.log(childSnapshot);
+                            if(childSnapshot.val().name == 'task1'){
+                                DB.child(childSnapshot.key()).set({name: 'task1',done: 'yes'});
+                                //console.log(childSnapshot.val().done);
+                                //childSnapshot.child('done').set('yes');
+                                //childSnapshot.set({done: 'yes'});
+                                //console.log(childSnapshot.child('done'));
+                            }
+                            
+                        });
+                        console.log(snapshot);
+                    });
+                    //console.log('checked');
+
             }
 
             function makeCheckListItemStr(name){
