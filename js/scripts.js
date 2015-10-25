@@ -148,37 +148,6 @@
         }
 
 
-<<<<<<< HEAD
-            // function fbDateNum(date){
-            //     switch(date){
-            //         case '4/10/13':
-            //             return 'Date1';
-                        
-            //         case '4/11/13':
-            //             return 'Date2';
-                        
-            //         case '4/12/13':
-            //             return 'Date3';
-            //         case '4/13/13':
-            //             return 'Date4';
-            //     }
-            // }
-=======
-            function fbDateNum(date){
-                switch(date){
-                    case '10/25/15':
-                        return 'Date1';
-                        
-                    case '10/26/15':
-                        return 'Date2';
-                        
-                    case '10/27/15':
-                        return 'Date3';
-                    case '10/28/15':
-                        return 'Date4';
-                }
-            }
->>>>>>> 27463b04b84f0e8289925f31f6eedcce61e57d17
 
             var DB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates');
             function makeCheckListItem(obj){
@@ -194,10 +163,10 @@
                 var str = '';
                 if(obj.done == 'yes'){
                        console.log('should be checked');
-                       str = '<input type="checkbox" onchange="check()" checked><label for="id">' + obj.name + '</label><br>';
+                       str = '<input type="checkbox" onchange="check(\'' + obj.name + '\')" checked><label for="id">' + obj.name + '</label><br>';
                 }
                 else
-                    str = '<input type="checkbox" onchange="check()"><label for="id">' + obj.name + '</label><br>';
+                    str = '<input type="checkbox" onchange="check(\'' + obj.name + '\')"><label for="id">' + obj.name + '</label><br>';
                 console.log(str);
                     
                     // document.getElementById('list').appendChild(taskItem);
@@ -209,28 +178,50 @@
                
 
             }
-            function check(){
-                //console.log('check function');
+            function check(name){
+                //console.log($(this).value);
+                    console.log(name);
                     
                     var DB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates/' + currDate);
+                    var bDB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates');
                     //console.log('made database');
                     DB.once('value', function(snapshot){
+
+
                         snapshot.forEach(function(childSnapshot){
                             //console.log(childSnapshot);
-                            if(childSnapshot.val().name == 'task1'){
-                                DB.child(childSnapshot.key()).set({name: 'task1',done: 'yes'});
+                            if(childSnapshot.val().name == name){
+
+
+                                DB.child(childSnapshot.key()).update({done: 'yes'});
+                                bDB.once('value', function(snapshot){
+                                    var num = snapshot.val().Total + 1;
+                                    bDB.update({
+                                        "Total": num
+                                    });
+                                });
+
+
+                            }
                                 //console.log(childSnapshot.val().done);
                                 //childSnapshot.child('done').set('yes');
                                 //childSnapshot.set({done: 'yes'});
                                 //console.log(childSnapshot.child('done'));
-                            }
+                            //}
                             
                         });
                         console.log(snapshot);
                     });
                     //console.log('checked');
-                    
-                    
+                    // DB.once('value', function(snapshot){
+                    //     console.log('****' + snapshot.val().Total);
+                    //     var num = snapshot.val().Total + 1;
+                    //     console.log(num);
+                    //     DB.update({
+                    //         "Total": num
+                    //     });
+                    // //console.log(snapshot.val().Total);
+                    // });    
                   
             }
 
@@ -248,15 +239,7 @@
                 document.getElementById('list').appendChild(label);
                 document.getElementById('list').appendChild(br);
 
-                DB.once('value', function(snapshot){
-                    console.log('****' + snapshot.val().Total);
-                    var num = snapshot.val().Total + 1;
-                    console.log(num);
-                    DB.update({
-                        "Total": num
-                    });
-                    //console.log(snapshot.val().Total);
-                });
+                
             }
 
             function showList(date){
