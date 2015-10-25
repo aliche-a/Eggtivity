@@ -95,6 +95,7 @@
 
         //var dataRef = new Firebase('https://blinding-heat-908.firebaseio.com/TName');
         var currDate;
+        var i = 0;
         window.onload = function(){
             $('#addToList').hide();
             //$('#pickDate').hide();
@@ -114,7 +115,7 @@
                
 
                 dateDB.push({'name': item, 'done': 'no'});
-                console.log('should be pushed');
+                //console.log('should be pushed');
             });
 
             // $('.chck').click(function(){
@@ -128,13 +129,15 @@
             //         });
             //     });
             // });
-            $('.chck').click(function(){
-                console.log('plz');
+            $('.clck').on('click', function(){
+                console.log('asldf');
             });
+
+
+            
         }
 
-
-    
+       
 
             function makeCheckListItem(obj){
                 //console.log(obj.name);
@@ -144,14 +147,43 @@
                 var taskItem = document.createElement('input');
                 taskItem.type = 'checkbox';
                 taskItem.setAttribute('class', 'chck');
+                i++;
                 var br = document.createElement('br');
 
                 if(obj.done == 'yes')
                     taskItem.checked = "true";
 
-                document.getElementById('list').appendChild(taskItem);
-                document.getElementById('list').appendChild(label);
-                document.getElementById('list').appendChild(br);
+                var str = '<input type="checkbox" onchange="check()"><label for="id">' + obj.name + '</label><br>';
+                //console.log(str);
+                
+                // document.getElementById('list').appendChild(taskItem);
+                // document.getElementById('list').appendChild(label);
+                // document.getElementById('list').appendChild(br);
+                
+                $('#list').append(str);
+
+            }
+
+            function check(){
+                //console.log('check function');
+                
+                    var DB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates/' + currDate);
+                    //console.log('made database');
+                    DB.once('value', function(snapshot){
+                        snapshot.forEach(function(childSnapshot){
+                            //console.log(childSnapshot);
+                            if(childSnapshot.val().name == 'task1'){
+                                DB.child(childSnapshot.key()).set({name: 'task1',done: 'yes'});
+                                console.log(childSnapshot.val().done);
+                                //childSnapshot.child('done').set('yes');
+                                //childSnapshot.set({done: 'yes'});
+                                //console.log(childSnapshot.child('done'));
+                            }
+                            
+                        });
+                    });
+                    //console.log('checked');
+                
             }
 
             function makeCheckListItemStr(name){
@@ -164,9 +196,11 @@
                 var br = document.createElement('br');
 
                 //adding item to front end
-                document.getElementById('list').appendChild(taskItem);
-                document.getElementById('list').appendChild(label);
-                document.getElementById('list').appendChild(br);
+                var str = '<input type="checkbox" onchange="check()"><label for="id">' + obj.name + '</label><br>';
+                $('#list').append(str);
+                // document.getElementById('list').appendChild(taskItem);
+                // document.getElementById('list').appendChild(label);
+                // document.getElementById('list').appendChild(br);
             }
 
             function showList(date){
@@ -183,6 +217,10 @@
                         makeCheckListItem(child.val());
                     });
                 });
+
+                // $('#list').click(function(){
+                //     console.log('oasdmf');
+                // });
             }
         //}
         
