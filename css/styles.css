@@ -45,7 +45,7 @@ i {
 }
 
 .left{
-  /*background-color:green;*/
+  background-color: #F9DEDE ;
   height: 600px;
   overflow: auto;
 
@@ -198,13 +198,13 @@ i {
 }
 
 .middle{
-  background-color: orange; 
+  /*background-color: #E8FCF5; */
   height: 650px;
 
 }
 
 .right{
-  background-color: pink;
+  background-color: #B5E8E8 ;
   height: 650px;
 }
 
