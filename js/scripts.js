@@ -52,7 +52,8 @@
          function start_chat () {            
              var chat_options = {
                  //unique id of the users who will be part of the chat. These users should alrea1,  
-                 unique_id: "u001,u002,u003,u004",  
+                 //unique_id: "u001,u002,u003,u004",  
+                 binder_id: "Bhc23AXAtysKo19a5hv4Iy5",
                  iframe: true,
                  //ID of the HTML tag within which the chat window will show up. Refer https://developer.grouphour.com/moxo/docs-js-sdk/#conversation
                  tagid4iframe: "chat",
@@ -147,21 +148,8 @@
         }
 
 
-            function fbDateNum(date){
-                switch(date){
-                    case '4/10/13':
-                        return 'Date1';
-                        
-                    case '4/11/13':
-                        return 'Date2';
-                        
-                    case '4/12/13':
-                        return 'Date3';
-                    case '4/13/13':
-                        return 'Date4';
-                }
-            }
 
+            var DB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates');
             function makeCheckListItem(obj){
                 //console.log(obj.name);
                 var label = document.createElement('label');
@@ -172,30 +160,69 @@
                 taskItem.setAttribute('class', 'chck');
                 var br = document.createElement('br');
 
-                if(obj.done == 'yes')
-                    taskItem.checked = "true";
+                var str = '';
+                if(obj.done == 'yes'){
+                       console.log('should be checked');
+                       str = '<input type="checkbox" onchange="check(\'' + obj.name + '\')" checked><label for="id">' + obj.name + '</label><br>';
+                }
+                else
+                    str = '<input type="checkbox" onchange="check(\'' + obj.name + '\')"><label for="id">' + obj.name + '</label><br>';
+                console.log(str);
+                    
+                    // document.getElementById('list').appendChild(taskItem);
+                    // document.getElementById('list').appendChild(label);
+                    // document.getElementById('list').appendChild(br);
+
+                $('#list').append(str);
+
+               
+
             }
-            function check(){
-                //console.log('check function');
+            function check(name){
+                //console.log($(this).value);
+                    console.log(name);
                     
                     var DB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates/' + currDate);
+                    var bDB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates');
                     //console.log('made database');
                     DB.once('value', function(snapshot){
+
+
                         snapshot.forEach(function(childSnapshot){
                             //console.log(childSnapshot);
-                            if(childSnapshot.val().name == 'task1'){
-                                DB.child(childSnapshot.key()).set({name: 'task1',done: 'yes'});
+                            if(childSnapshot.val().name == name){
+
+
+                                DB.child(childSnapshot.key()).update({done: 'yes'});
+                                bDB.once('value', function(snapshot){
+                                    var num = snapshot.val().Total + 1;
+                                    bDB.update({
+                                        "Total": num
+                                    });
+                                });
+
+
+                            }
                                 //console.log(childSnapshot.val().done);
                                 //childSnapshot.child('done').set('yes');
                                 //childSnapshot.set({done: 'yes'});
                                 //console.log(childSnapshot.child('done'));
-                            }
+                            //}
                             
                         });
                         console.log(snapshot);
                     });
                     //console.log('checked');
-
+                    // DB.once('value', function(snapshot){
+                    //     console.log('****' + snapshot.val().Total);
+                    //     var num = snapshot.val().Total + 1;
+                    //     console.log(num);
+                    //     DB.update({
+                    //         "Total": num
+                    //     });
+                    // //console.log(snapshot.val().Total);
+                    // });    
+                  
             }
 
             function makeCheckListItemStr(name){
@@ -211,20 +238,33 @@
                 document.getElementById('list').appendChild(taskItem);
                 document.getElementById('list').appendChild(label);
                 document.getElementById('list').appendChild(br);
+
+                
             }
+
+            var dateIDs = ['Date1', 'Date2', 'Date3', 'Date4'];
 
             function showList(date){
                 currDate = date;
                 $('#addToList').show();
                 $('#pickDate').hide();
+                for(var i = 0; i < dateIDs.length; i++){
+                    if(dateIDs[i] == date)
+                        $('#' + date).addClass('active');
+                    else
+                        $('#' + dateIDs[i]).removeClass('active');
+                }
+                
                 console.log('showing list of ' + date);
                 document.getElementById('list').innerHTML = '';
                 var dateDB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates/' + date);
+                console.log('set up firebase');
                 dateDB.once('value', function(snapshot){
                     snapshot.forEach(function(child){
-                        //console.log(child.val());
+                        console.log(child.val());
                         //console.log(makeCheckListItem(child.val()));
-                        makeCheckListItem(child.val());
+                        if(child.val() != -1)
+                            makeCheckListItem(child.val());
                     });
                 });
             }
