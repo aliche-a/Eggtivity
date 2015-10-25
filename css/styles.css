@@ -1,6 +1,6 @@
 html, body{
   height: 100%;
-  font-family: 'Source Sans Pro';
+  font-family: 'Roboto Condensed';
 }
 
 .navbar-static-top {
@@ -33,6 +33,10 @@ i {
 }
 
 .indivDate:hover{
+	border-bottom: 3px solid;
+}
+
+.active{
 	border-bottom: 3px solid;
 }
 
