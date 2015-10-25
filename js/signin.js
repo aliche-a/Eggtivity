@@ -3,10 +3,13 @@ var ref = new Firebase("https://blinding-heat-908.firebaseio.com/");
 var loggedIn = false;
 function createUser(teamNameObject)
 {
-  console.log("creating user");
+        console.log("Successfully created user account with1");
+
   document.getElementById("error").innerHTML = "";
-  ref.createUser(teamNameObject, function(error, userData) {
-    if (error) {
+          console.log("Successfully created user ");
+
+  ref.createUser(teamNameObject, function(/*error, userData*/) {
+   /* if (error) {
       switch (error.code) {
         case "USERNAME_TAKEN":
           document.getElementById("error").innerHTML = "You must enter a different username.";
@@ -15,10 +18,11 @@ function createUser(teamNameObject)
           document.getElementById("error").innerHTML = "We apologize, something unexpected has occured.";
           console.log("Error creating user:", error);
       }
-    } else {  
-      console.log("Successfully created user account with uid:", userData.uid);
+    } else { */ 
+      console.log("Successfully created user account with");
+
       authWithUsername(teamNameObject);
-    } 
+    //} 
   });
 }
 

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // onClick's logic below:
     resetButton.addEventListener('click', function() {
 
-    var resetRef = new Firebase('https://vivid-heat-3174.firebaseio.com/Lobby');
-    resetRef.child(TName/DatesDate1).remove();
+    var resetRef = new Firebase("https://blinding-heat-908.firebaseio.com/TName");
+    resetRef.child("Dates").remove();
   });
 });
