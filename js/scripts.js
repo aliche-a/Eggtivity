@@ -22,6 +22,13 @@
             case 6:
 
                 im.src = "./egg/cow.gif";
+                var html = [];
+html.push('<h1>Congratulations</h1>');
+var target = document.getElementById('uniqueTargetID');
+target.innerHTML = html.join('');
+target.style.display = 'block';
+//target.style.display = 'black_overlay';
+
                 break;
         }
         }
@@ -230,14 +237,6 @@
                                         "Total": num
                                     });
                                 });
-var html = [];
-html.push('<h1>This is a title</h1>');
-html.push('<p>So then she said, thats not a monkey, its a truck!</p>');
-html.push('<p>You shoulda seen his face...</p>');
-var target = document.getElementById('uniqueTargetID');
-target.innerHTML = html.join('');
-target.style.display = 'block';
-
                             }
                                 //console.log(childSnapshot.val().done);
                                 //childSnapshot.child('done').set('yes');
