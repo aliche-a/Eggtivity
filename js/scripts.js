@@ -52,7 +52,8 @@
          function start_chat () {            
              var chat_options = {
                  //unique id of the users who will be part of the chat. These users should alrea1,  
-                 unique_id: "u001,u002,u003,u004",  
+                 //unique_id: "u001,u002,u003,u004",  
+                 binder_id: "Bhc23AXAtysKo19a5hv4Iy5",
                  iframe: true,
                  //ID of the HTML tag within which the chat window will show up. Refer https://developer.grouphour.com/moxo/docs-js-sdk/#conversation
                  tagid4iframe: "chat",
@@ -147,6 +148,7 @@
         }
 
 
+<<<<<<< HEAD
             // function fbDateNum(date){
             //     switch(date){
             //         case '4/10/13':
@@ -161,6 +163,22 @@
             //             return 'Date4';
             //     }
             // }
+=======
+            function fbDateNum(date){
+                switch(date){
+                    case '10/25/15':
+                        return 'Date1';
+                        
+                    case '10/26/15':
+                        return 'Date2';
+                        
+                    case '10/27/15':
+                        return 'Date3';
+                    case '10/28/15':
+                        return 'Date4';
+                }
+            }
+>>>>>>> 27463b04b84f0e8289925f31f6eedcce61e57d17
 
             var DB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates');
             function makeCheckListItem(obj){

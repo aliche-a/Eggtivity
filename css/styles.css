@@ -46,7 +46,7 @@ i {
 
 .left{
   background-color: #F9DEDE ;
-  height: 600px;
+  height: 650px;
   overflow: auto;
 
 	  /* General Blueprint Style */
@@ -211,5 +211,5 @@ i {
 .bottom {
 	margin: -14px;
     position: fixed;
-    bottom: 14px;
+    bottom: 25px;
 }
