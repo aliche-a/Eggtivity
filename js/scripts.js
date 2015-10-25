@@ -93,36 +93,99 @@
         // }
         // //start_timeline(); 
 
-        var dataRef = new Firebase('https://blinding-heat-908.firebaseio.com/');
-
+        //var dataRef = new Firebase('https://blinding-heat-908.firebaseio.com/TName');
+        var currDate;
         window.onload = function(){
-            var date = "4/10/13";
-            $('#addTaskButton').click(function(date){
+            //$('#addToList').hide();
+            //$('#pickDate').hide();
+            
+
+            $('#addTaskButton').click(function(){
+                console.log('add button clicked');
                 var item = document.getElementById('listItem').value;
                 console.log(item);
-                var taskItem = document.createElement("input");
-                taskItem.type = "checkbox";
-                //taskItem.label = item;
+                makeCheckListItemStr(item);
+                
+
+                //adding item to firebase
+                var dateDB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates/' + currDate);
+                //var dateTab = dataRef.child('TName').child('Dates').child();
+                //console.log(dateTab.value('Person 1'));
+                dateDB.on('value', function(snapshot){
+                    var data = snapshot.val();
+                    console.log(data);
+                });
+
+                dateDB.push({'name': item, 'done': 'no'});
+                console.log('should be pushed');
+            });
+
+            
+        }
+
+
+            function fbDateNum(date){
+                switch(date){
+                    case '4/10/13':
+                        return 'Date1';
+                        
+                    case '4/11/13':
+                        return 'Date2';
+                        
+                    case '4/12/13':
+                        return 'Date3';
+                    case '4/13/13':
+                        return 'Date4';
+                }
+            }
+
+            function makeCheckListItem(obj){
+                //console.log(obj.name);
                 var label = document.createElement('label');
                 label.htmlFor = "id";
-                label.appendChild(document.createTextNode(item));
+                label.appendChild(document.createTextNode(obj.name));
+                var taskItem = document.createElement('input');
+                taskItem.type = 'checkbox';
+                var br = document.createElement('br');
+
+                if(obj.done == 'yes')
+                    taskItem.checked = "true";
+
+                document.getElementById('list').appendChild(taskItem);
+                document.getElementById('list').appendChild(label);
+                document.getElementById('list').appendChild(br);
+            }
+
+            function makeCheckListItemStr(name){
+                var taskItem = document.createElement("input");
+                taskItem.type = "checkbox";
+                //taskItem.checked = "false";
+                var label = document.createElement('label');
+                label.htmlFor = "id";
+                label.appendChild(document.createTextNode(name));
                 var br = document.createElement('br');
 
                 //adding item to front end
                 document.getElementById('list').appendChild(taskItem);
                 document.getElementById('list').appendChild(label);
                 document.getElementById('list').appendChild(br);
+            }
 
-                //adding item to firebase
-                var dateTab = dataRef.child('TName').child('Dates').child('Date1');
-                //console.log(dateTab.value('Person 1'));
-                dateTab.on('value', function(snapshot){
-                    var data = snapshot.val();
-                    console.log(data);
+            function showList(date){
+                currDate = date;
+                $('#addToList').show();
+                $('#pickDate').hide();
+                console.log('showing list of ' + date);
+                document.getElementById('list').innerHTML = '';
+                var dateDB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates/' + date);
+                dateDB.once('value', function(snapshot){
+                    snapshot.forEach(function(child){
+                        //console.log(child.val());
+                        //console.log(makeCheckListItem(child.val()));
+                        makeCheckListItem(child.val());
+                    });
                 });
-
-                dateTab.push({'name': item, 'done': 'no'});
-            });
-        }
+            }
+        //}
         
      

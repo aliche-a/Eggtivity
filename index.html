@@ -39,19 +39,19 @@
 
                     <div id="timeline">
                         <ul class="dates"> <!--ADDED for timeline-->
-                    <li>
+                    <li onclick="showList('Date1')">
                         <span>4/10/13</span></time>
                     
                     </li>
-                    <li>
+                    <li onclick="showList('Date2')">
                         <span>4/11/13</span></time>
                         
                     </li>
-                    <li>
+                    <li onclick="showList('Date3')">
                         <span>4/12/13</span> </time>
                         
                     </li>
-                    <li>
+                    <li onclick="showList('Date4')">
                         <span>4/13/13</span> </time>
                         
                     </li>
@@ -65,8 +65,12 @@
                     <!-- middle -->
                     <div class="subtitle">Tasks</div>
                     <div id="list"></div> 
-                    <input type="text" id="listItem" placeholder="Enter task">
-                    <button type="button" id="addTaskButton">Add</button>
+                    <div id="pickDate">Pick a date.</div>
+                    <!-- <div id="addToList"> -->
+                        <input type="text" id="listItem" placeholder="Enter task">
+                        <button type="button" id="addTaskButton">Add</button>
+                    <!-- </div> -->
+                    
                     <!-- <a id="getToken" href="javascript:start_chat();">Moxtra Chat</a> -->
                     <!-- <div id="chat"></div> -->
                 </div>
