@@ -150,10 +150,13 @@
                 i++;
                 var br = document.createElement('br');
 
-                if(obj.done == 'yes')
-                    taskItem.checked = "true";
-
-                var str = '<input type="checkbox" onchange="check()"><label for="id">' + obj.name + '</label><br>';
+                var str = '';
+                if(obj.done == 'yes'){
+                    console.log('should be checked');
+                    str = '<input type="checkbox" onchange="check()" checked><label for="id">' + obj.name + '</label><br>';
+                }
+                else
+                    str = '<input type="checkbox" onchange="check()"><label for="id">' + obj.name + '</label><br>';
                 //console.log(str);
                 
                 // document.getElementById('list').appendChild(taskItem);
@@ -212,9 +215,12 @@
                 var dateDB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates/' + date);
                 dateDB.once('value', function(snapshot){
                     snapshot.forEach(function(child){
-                        //console.log(child.val());
+                        console.log('child val' + child.val());
                         //console.log(makeCheckListItem(child.val()));
-                        makeCheckListItem(child.val());
+                        if(child.val() != -1){
+                            //console.log('hi');
+                            makeCheckListItem(child.val());
+                        }
                     });
                 });
 
