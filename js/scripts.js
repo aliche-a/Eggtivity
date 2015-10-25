@@ -1,3 +1,31 @@
+        function changeImage(number){
+        im = document.getElementById('image');
+        switch(number){
+            case 0:
+                im.src = "./egg/egg-yellow5.png";
+                break;
+            case 1:
+                im.src = "./egg/egg-yellow4.png";
+                break;
+            case 2:
+                im.src = "./egg/egg-yellow3.png";
+                break;
+            case 3:
+                im.src = "./egg/egg-yellow2.png";
+                break;
+            case 4:
+                im.src = "./egg/egg-yellow1.png";
+                break;
+            case 5:
+                im.src = "./egg/egg-yellow.png";
+                break;
+            case 6:
+                
+                im.src = "./egg/cow.gif";
+                break;
+        }
+        }
+        
            function getAccessToken(unique_id,firstname,lastname) {
                  var timestamp = new Date().getTime();
                  $.ajax({
@@ -196,6 +224,8 @@
                                 DB.child(childSnapshot.key()).update({done: 'yes'});
                                 bDB.once('value', function(snapshot){
                                     var num = snapshot.val().Total + 1;
+                                    changeImage(num);
+
                                     bDB.update({
                                         "Total": num
                                     });
@@ -269,31 +299,4 @@
                 });
             }
 
-	    function changeImage(number){
-		im = document.getElementById('image');
-		switch(){
-			case 0:
-				im.src = "./egg/egg-yellow5.png";
-				break;
-			case 1:
-				im.src = "./egg/egg-yellow4.png";
-				break;
-			case 2:
-				im.src = "./egg/egg-yellow3.png";
-				break;
-			case 3:
-				im.src = "./egg/egg-yellow2.png";
-				break;
-			case 4:
-				im.src = "./egg/egg-yellow1.png";
-				break;
-			case 5:
-				im.src = "./egg/egg-yellow.png";
-				break;
-			case 6:
-				im.src = "./egg/cow.png";
-				break;
-		}
-	    }
-        
      
