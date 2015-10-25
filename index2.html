@@ -16,8 +16,7 @@
         <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 
         <!-- // <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
-        <script type="text/javascript" src="https://www.moxtra.com/api/js/moxtra-latest.js" id="moxtrajs" data-client-id="jVvRPHlk5nQ"/>
-        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <!--<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>-->
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/scripts.js"></script>
         <!-- // <script type="text/javascript" src="index.js"></script> -->
@@ -40,19 +39,19 @@
 
                     <div id="timeline">
                         <ul class="dates"> <!--ADDED for timeline-->
-                    <li class="indivDate" onclick="showList('Date1')">
+                    <li onclick="showList('Date1')">
                         <span>4/10/13</span></time>
                     
                     </li>
-                    <li class="indivDate" onclick="showList('Date2')">
+                    <li onclick="showList('Date2')">
                         <span>4/11/13</span></time>
                         
                     </li>
-                    <li class="indivDate" onclick="showList('Date3')">
+                    <li onclick="showList('Date3')">
                         <span>4/12/13</span> </time>
                         
                     </li>
-                    <li class="indivDate" onclick="showList('Date4')">
+                    <li onclick="showList('Date4')">
                         <span>4/13/13</span> </time>
                         
                     </li>
@@ -72,22 +71,22 @@
                         <button type="button" id="addTaskButton">Add</button>
                     </div>
                     
-                    <div class="col-sm-6 bottom">
-                        <!-- bottom chat -->
-                        <a id="getToken" href="javascript:start_chat();">Click Here for Chat Feature</a>
-                        <div id="chat"></div>
-                    </div> <!-- bottom div -->
-                    
+                    <!-- <a id="getToken" href="javascript:start_chat();">Moxtra Chat</a> -->
+                    <!-- <div id="chat"></div> -->
                 </div>
 
                 <div class="col-sm-3 right">
                     <!-- right -->
-                    <center><img id = "image" src = "./egg/egg-yellow5.png" style ="width: 50%, height: 50%, text-align: center"></center>
+                    <center><img src = "./egg/egg-yellow3.png" style ="width: 50%, height: 50%, text-align: center"></center>
 
-                    <p><center><font size="6">hack squad</font></center></p>
+                    <p><center><font size="6">Demo Task</font></center></p>
                     <p><center><font size="4">Member List:</font></center></p>
-		    <p><center><font size ="4">Aliche</font></center></p>
-		    <p><center><font size ="4">Dummy</font></center></p>
+		    <div id = "members">
+		 	<p><center>
+			$("#members").showMembers();
+			</center></p>
+		    </div>
+
                 </div>
 
             </div>
