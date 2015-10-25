@@ -169,7 +169,7 @@
 
             function check(){
                 //console.log('check function');
-                
+                    
                     var DB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates/' + currDate);
                     //console.log('made database');
                     DB.once('value', function(snapshot){
@@ -177,13 +177,14 @@
                             //console.log(childSnapshot);
                             if(childSnapshot.val().name == 'task1'){
                                 DB.child(childSnapshot.key()).set({name: 'task1',done: 'yes'});
-                                console.log(childSnapshot.val().done);
+                                //console.log(childSnapshot.val().done);
                                 //childSnapshot.child('done').set('yes');
                                 //childSnapshot.set({done: 'yes'});
                                 //console.log(childSnapshot.child('done'));
                             }
                             
                         });
+                        console.log(snapshot);
                     });
                     //console.log('checked');
                 

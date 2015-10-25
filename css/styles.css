@@ -24,6 +24,11 @@ i {
   display: table;
 }
 
+.indivDate{
+	cursor: hand;
+	cursor: pointer;
+}
+
 .row{
   height: 100%;
 }
