@@ -52,7 +52,8 @@
          function start_chat () {            
              var chat_options = {
                  //unique id of the users who will be part of the chat. These users should alrea1,  
-                 unique_id: "u001,u002,u003,u004",  
+                 //unique_id: "u001,u002,u003,u004",  
+                 binder_id: "Bhc23AXAtysKo19a5hv4Iy5",
                  iframe: true,
                  //ID of the HTML tag within which the chat window will show up. Refer https://developer.grouphour.com/moxo/docs-js-sdk/#conversation
                  tagid4iframe: "chat",
