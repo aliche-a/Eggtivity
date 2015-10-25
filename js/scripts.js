@@ -149,15 +149,15 @@
 
             function fbDateNum(date){
                 switch(date){
-                    case '4/10/13':
+                    case '10/25/15':
                         return 'Date1';
                         
-                    case '4/11/13':
+                    case '10/26/15':
                         return 'Date2';
                         
-                    case '4/12/13':
+                    case '10/27/15':
                         return 'Date3';
-                    case '4/13/13':
+                    case '10/28/15':
                         return 'Date4';
                 }
             }
