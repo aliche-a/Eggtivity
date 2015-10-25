@@ -167,7 +167,7 @@ i {
 	.icon-arrow-left:before {
 		content: "\f060";
 	}
-  background-color:green;
+  /*background-color:green;*/
   /*height: 100%;*/
 }
 
@@ -188,11 +188,17 @@ i {
 
 .middle{
   background-color: orange; 
-  height: 600px;
+  height: 650px;
 
 }
 
 .right{
   background-color: pink;
-  height: 600px;
+  height: 650px;
+}
+
+.bottom {
+	margin: -14px;
+    position: fixed;
+    bottom: 14px;
 }
