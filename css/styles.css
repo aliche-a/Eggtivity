@@ -191,3 +191,9 @@ i {
   background-color: pink;
   height: 600px;
 }
+
+.bottom {
+	margin: -14px;
+    position: fixed;
+    bottom: 14px;
+}
