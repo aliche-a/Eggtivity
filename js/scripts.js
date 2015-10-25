@@ -147,21 +147,22 @@
         }
 
 
-            function fbDateNum(date){
-                switch(date){
-                    case '4/10/13':
-                        return 'Date1';
+            // function fbDateNum(date){
+            //     switch(date){
+            //         case '4/10/13':
+            //             return 'Date1';
                         
-                    case '4/11/13':
-                        return 'Date2';
+            //         case '4/11/13':
+            //             return 'Date2';
                         
-                    case '4/12/13':
-                        return 'Date3';
-                    case '4/13/13':
-                        return 'Date4';
-                }
-            }
+            //         case '4/12/13':
+            //             return 'Date3';
+            //         case '4/13/13':
+            //             return 'Date4';
+            //     }
+            // }
 
+            var DB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates');
             function makeCheckListItem(obj){
                 //console.log(obj.name);
                 var label = document.createElement('label');
@@ -172,20 +173,23 @@
                 taskItem.setAttribute('class', 'chck');
                 var br = document.createElement('br');
 
-                 var str = '';
-                      if(obj.done == 'yes'){
-                        console.log('should be checked');
-                        str = '<input type="checkbox" onchange="check()" checked><label for="id">' + obj.name + '</label><br>';
-                    }
-                    else
-                        str = '<input type="checkbox" onchange="check()"><label for="id">' + obj.name + '</label><br>';
-                    console.log(str);
+                var str = '';
+                if(obj.done == 'yes'){
+                       console.log('should be checked');
+                       str = '<input type="checkbox" onchange="check()" checked><label for="id">' + obj.name + '</label><br>';
+                }
+                else
+                    str = '<input type="checkbox" onchange="check()"><label for="id">' + obj.name + '</label><br>';
+                console.log(str);
                     
                     // document.getElementById('list').appendChild(taskItem);
                     // document.getElementById('list').appendChild(label);
                     // document.getElementById('list').appendChild(br);
 
-                      $('#list').append(str);
+                $('#list').append(str);
+
+               
+
             }
             function check(){
                 //console.log('check function');
@@ -225,6 +229,16 @@
                 document.getElementById('list').appendChild(taskItem);
                 document.getElementById('list').appendChild(label);
                 document.getElementById('list').appendChild(br);
+
+                DB.once('value', function(snapshot){
+                    console.log('****' + snapshot.val().Total);
+                    var num = snapshot.val().Total + 1;
+                    console.log(num);
+                    DB.update({
+                        "Total": num
+                    });
+                    //console.log(snapshot.val().Total);
+                });
             }
 
             function showList(date){
