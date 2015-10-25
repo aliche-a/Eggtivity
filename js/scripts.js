@@ -23,7 +23,7 @@
 
                 im.src = "./egg/cow.gif";
                 var html = [];
-html.push('<h1>Congratulations</h1>');
+html.push('<h1 style="background-color: #B5E8E8 ;">Congratulations!</h1>');
 var target = document.getElementById('uniqueTargetID');
 target.innerHTML = html.join('');
 target.style.display = 'block';
