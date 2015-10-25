@@ -101,12 +101,15 @@
                 console.log(item);
                 var taskItem = document.createElement("input");
                 taskItem.type = "checkbox";
-                taskItem.label = item;
+                //taskItem.label = item;
                 var label = document.createElement('label');
                 label.htmlFor = "id";
                 label.appendChild(document.createTextNode(item));
+                var br = document.createElement('br');
+
                 document.getElementById('list').appendChild(taskItem);
                 document.getElementById('list').appendChild(label);
+                document.getElementById('list').appendChild(br);
             });
         }
         
