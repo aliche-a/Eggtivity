@@ -96,7 +96,7 @@
         //var dataRef = new Firebase('https://blinding-heat-908.firebaseio.com/TName');
         var currDate;
         window.onload = function(){
-            //$('#addToList').hide();
+            $('#addToList').hide();
             //$('#pickDate').hide();
             
 
@@ -111,16 +111,26 @@
                 var dateDB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates/' + currDate);
                 //var dateTab = dataRef.child('TName').child('Dates').child();
                 //console.log(dateTab.value('Person 1'));
-                dateDB.on('value', function(snapshot){
-                    var data = snapshot.val();
-                    console.log(data);
-                });
+               
 
                 dateDB.push({'name': item, 'done': 'no'});
                 console.log('should be pushed');
             });
 
-            
+            // $('.chck').click(function(){
+            //     console.log('got checked');
+            //     var DB = new Firebase('https://blinding-heat-908.firebaseio.com/TName/Dates/' + currDate);
+            //     DB.on('value', function(snapshot){
+            //         var data = snapshot.val();
+            //         console.log($(this).value);
+            //         DB.orderBy('name').equalTo($(this).value).on('value', function(snapshot){
+            //             console.log(snapshot);
+            //         });
+            //     });
+            // });
+            $('.chck').click(function(){
+                console.log('plz');
+            });
         }
 
 
@@ -146,6 +156,7 @@
                 label.appendChild(document.createTextNode(obj.name));
                 var taskItem = document.createElement('input');
                 taskItem.type = 'checkbox';
+                taskItem.setAttribute('class', 'chck');
                 var br = document.createElement('br');
 
                 if(obj.done == 'yes')
