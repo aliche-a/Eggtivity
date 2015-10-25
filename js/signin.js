@@ -1,8 +1,9 @@
-//Firebase.enableLogging(true);
+Firebase.enableLogging(true);
 var ref = new Firebase("https://blinding-heat-908.firebaseio.com/");
 var loggedIn = false;
 function createUser(teamNameObject)
 {
+  console.log("creating user");
   document.getElementById("error").innerHTML = "";
   ref.createUser(teamNameObject, function(error, userData) {
     if (error) {
@@ -21,8 +22,8 @@ function createUser(teamNameObject)
   });
 }
 
-function authWithUsername(teamNameObject)
-{
+var currName;
+function authWithUsername(teamNameObject){
   document.getElementById("error").innerHTML = "";
   ref.authWithPassword(teamNameObject, function(error, authData) {
     if (error) {
@@ -31,6 +32,21 @@ function authWithUsername(teamNameObject)
     console.log("Log in successful:", authData);
     //var html = '<p> You have logged in successfully as ' + authData.password.email + '</p>';
     document.getElementById("form").innerHTML= html;
+    var key = document.getElementById('username').valuel
+    var userFB = ref.child("TName/Members");
+    var data = snapshot.val();
+    if(data.TName.Members.Name1 == "simplelogin: -1"){
+      console.log("Name1 is updated");
+      userFB.update({
+        "Name1": key
+      })
+    }
+    else{
+      console.log("Name2 is updated");
+      userFb.update({
+        "Name2": key
+      })
+    }
    /* key = authData.uid;
     assignPlayerNumber(key);
     loggedIn = true;*/
