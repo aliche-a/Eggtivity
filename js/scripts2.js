@@ -1,4 +1,4 @@
-        function changeImage(number){
+ function changeImage(number){
         im = document.getElementById('image');
         switch(number){
             case 0:
@@ -20,15 +20,8 @@
                 im.src = "./egg/egg-yellow.png";
                 break;
             case 6:
-
+                
                 im.src = "./egg/hatching_cow.gif";
-                var html = [];
-html.push('<h1 style="background-color: #B5E8E8 ;">Congratulations!</h1>');
-var target = document.getElementById('uniqueTargetID');
-target.innerHTML = html.join('');
-target.style.display = 'block';
-//target.style.display = 'black_overlay';
-
                 break;
         }
         }
@@ -237,6 +230,8 @@ target.style.display = 'block';
                                         "Total": num
                                     });
                                 });
+
+
                             }
                                 //console.log(childSnapshot.val().done);
                                 //childSnapshot.child('done').set('yes');
@@ -303,5 +298,3 @@ target.style.display = 'block';
                     });
                 });
             }
-
-     
