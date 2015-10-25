@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+//comment
 /*document.addEventListener('DOMContentLoaded', function() {
     var resetButton = document.getElementById('reset');
     // onClick's logic below:

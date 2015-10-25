@@ -134,20 +134,7 @@
         }
 
 
-            function fbDateNum(date){
-                switch(date){
-                    case '4/10/13':
-                        return 'Date1';
-                        
-                    case '4/11/13':
-                        return 'Date2';
-                        
-                    case '4/12/13':
-                        return 'Date3';
-                    case '4/13/13':
-                        return 'Date4';
-                }
-            }
+    
 
             function makeCheckListItem(obj){
                 //console.log(obj.name);
